@@ -1,6 +1,12 @@
 #!/bin/bash
 
-curl "https://www.wunderground.com/history/airport/GNV/2016/09/06/DailyHistory.heml?&format=1" > gnv.txt
+day=`date -d yesterday +d`
+
+month=`date -d yesterday +m`
+
+year='date -d yesterday +Y`
+
+curl "https://www.wunderground.com/history/airport/GNV/$year/$month/$day/DailyHistory.html?&format=1" > gnv.txt
 
 maxTemp=`awk -F',' '{print $2}' gnv.txt | sort -n | tail -n1`
 
